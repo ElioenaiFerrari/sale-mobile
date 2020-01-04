@@ -1,12 +1,13 @@
 import styled from 'styled-components/native';
-import wallpaper from '../../assets/background.jpg';
+import {Dimensions} from 'react-native';
 
 export const Container = styled.KeyboardAvoidingView.attrs({
-  behavior: 'height',
+  behavior: 'padding',
 })`
-  flex: 1;
-  flex-direction: column;
+  width: ${Dimensions.get('screen').width};
+  height: ${Dimensions.get('screen').height};
   background: #fff;
+  flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   padding-bottom: 40px;

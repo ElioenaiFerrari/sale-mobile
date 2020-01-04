@@ -10,6 +10,7 @@ export const InputText = styled.TextInput.attrs({
   placeholder: props => props.props.placeholder,
   keyboardType: props => props.props.type,
   secureTextEntry: props => (props.props.type === 'password' ? true : false),
+  autoFocus: props => props.props.focus,
 })`
   background: ${props => props.props.background};
   width: ${props => props.props.width};
@@ -17,6 +18,7 @@ export const InputText = styled.TextInput.attrs({
 
   border-bottom-width: 0.5px;
   border-bottom-color: gray;
+
   padding: 10px 40px;
   border-radius: 4px;
   text-align: center;

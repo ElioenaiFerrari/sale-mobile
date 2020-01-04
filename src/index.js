@@ -1,15 +1,16 @@
 import React from 'react';
-
 import {StatusBar} from 'react-native';
+import {Provider} from 'react-redux';
+
 import Routes from './routes';
 
-// import { Container } from './styles';
+import store from './store';
 
 const App = () => (
-  <>
+  <Provider store={store}>
     <StatusBar backgroundColor="#191919" barStyle="light-content" />
     <Routes />
-  </>
+  </Provider>
 );
 
 export default App;

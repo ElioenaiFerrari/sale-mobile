@@ -36,6 +36,9 @@ target 'Sale' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
   target 'SaleTests' do
     inherit! :search_paths
     # Pods for testing
