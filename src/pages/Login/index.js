@@ -6,13 +6,13 @@ import Input from '../../components/Input';
 import ButtonSubmit from '../../components/ButtonSubmit';
 
 import {addEmail, addPassword} from '../../actions/users';
-import deploy from '../../assets/animations/deploy.json';
+import read from '../../assets/animations/read.json';
 
-export default function Login() {
+export default function Login(props) {
   return (
     <Container>
       <Lottie
-        source={deploy}
+        source={read}
         autoPlay
         loop
         style={{
@@ -20,7 +20,6 @@ export default function Login() {
           height: 300,
         }}
       />
-
       <Input
         focus={true}
         type="email-address"
@@ -47,15 +46,18 @@ export default function Login() {
       />
       <ButtonSubmit
         text="Entrar"
-        background="#7159c1"
+        background="#00FAa0"
         color="#FFF"
         width="80%"
         margin="20px 0 0 0"
+        action={function() {
+          props.navigation.navigate('Main');
+        }}
       />
       <ButtonSubmit
         text="Criar conta"
         background="rgba(0, 0, 0, 0);"
-        color="#7159c1"
+        color="#8b10ae"
         width="80%"
         margin="0"
       />
