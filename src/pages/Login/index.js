@@ -46,7 +46,7 @@ export default function Login(props) {
       />
       <ButtonSubmit
         text="Entrar"
-        background="#00FAa0"
+        background="#7159c1"
         color="#FFF"
         width="80%"
         margin="20px 0 0 0"
@@ -57,7 +57,7 @@ export default function Login(props) {
       <ButtonSubmit
         text="Criar conta"
         background="rgba(0, 0, 0, 0);"
-        color="#8b10ae"
+        color="#7159c1"
         width="80%"
         margin="0"
       />
