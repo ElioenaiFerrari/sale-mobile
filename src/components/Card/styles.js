@@ -14,7 +14,7 @@ export const List = styled.FlatList.attrs({
   width: 100%;
 `;
 
-export const ListItem = styled.View`
+export const ListItem = styled.TouchableOpacity`
   height: 220px;
   background: #fff;
   margin: 5px 10px;
@@ -32,7 +32,7 @@ export const ListHeader = styled.View`
 export const Title = styled.Text`
   text-align: center;
   font-size: 18px;
-  color: rgba(0, 0, 0, 0.3);
+  color: #eb626b;
   font-weight: bold;
 `;
 
@@ -46,8 +46,9 @@ export const ListContent = styled.View`
 `;
 
 export const Content = styled.Text`
-  font-size: 16px;
-  color: rgba(0, 0, 0, 0.4);
+  font-size: 14px;
+  color: #2e2151;
+  font-weight: bold;
   text-align: justify;
 `;
 

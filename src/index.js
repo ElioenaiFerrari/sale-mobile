@@ -8,7 +8,7 @@ import store from './store';
 
 const App = () => (
   <Provider store={store}>
-    <StatusBar backgroundColor="#191919" barStyle="light-content" />
+    <StatusBar backgroundColor="#2e2151" barStyle="light-content" />
     <Routes />
   </Provider>
 );

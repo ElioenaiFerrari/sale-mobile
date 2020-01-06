@@ -1,10 +1,10 @@
 import React from 'react';
 import Lottie from 'lottie-react-native';
-
+// Styles
 import {Container} from './styles';
-import Input from '../../components/Input';
-import ButtonSubmit from '../../components/ButtonSubmit';
-
+// Components
+import {Input, ButtonSubmit} from '../../components';
+// Actions
 import {addEmail, addPassword} from '../../actions/users';
 import read from '../../assets/animations/read.json';
 
@@ -46,7 +46,7 @@ export default function Login(props) {
       />
       <ButtonSubmit
         text="Entrar"
-        background="#7159c1"
+        background="#eb626b"
         color="#FFF"
         width="80%"
         margin="20px 0 0 0"
@@ -57,7 +57,7 @@ export default function Login(props) {
       <ButtonSubmit
         text="Criar conta"
         background="rgba(0, 0, 0, 0);"
-        color="#7159c1"
+        color="#eb626b"
         width="80%"
         margin="0"
       />

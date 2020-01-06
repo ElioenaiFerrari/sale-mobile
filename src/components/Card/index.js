@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import {Animated} from 'react-native';
 
 import {
   Container,
@@ -13,6 +14,8 @@ import {
 } from './styles';
 
 export default function Card(props) {
+  const [zoom, setZoom] = useState();
+
   return (
     <Container>
       <List

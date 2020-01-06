@@ -1,7 +1,9 @@
 import React from 'react';
 
+// styles
 import {Container} from './styles';
-import Card from '../../components/Card';
+// Components
+import {Card, Courses} from '../../components';
 
 export default function Main() {
   const data = [
@@ -43,6 +45,7 @@ export default function Main() {
   ];
   return (
     <Container>
+      <Courses />
       <Card data={data} />
     </Container>
   );

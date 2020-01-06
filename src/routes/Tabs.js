@@ -22,7 +22,7 @@ const Tabs = createBottomTabNavigator(
       inactiveTintColor: '#eee',
       showLabel: false,
       style: {
-        backgroundColor: '#7159c1',
+        backgroundColor: '#eb626b',
       },
     },
     initialRouteName: 'Main',
