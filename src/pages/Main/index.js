@@ -38,7 +38,8 @@ export default function Main() {
     {
       id: Math.random() * 30,
       title: 'Sistemas',
-      content: 'Novo sistema da católica está previsto para Julho de 2020',
+      content:
+        'Novo sistema da católica está previsto para Julho de 2020. A TI está ansiosa para ver a recepçaõ dos usuários',
       image:
         'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940',
     },

@@ -7,6 +7,7 @@ export const Container = styled.View`
 `;
 
 export const InputText = styled.TextInput.attrs({
+  placeholderTextColor: props => props.props.placeholderTextColor,
   placeholder: props => props.props.placeholder,
   keyboardType: props => props.props.type,
   secureTextEntry: props => (props.props.type === 'password' ? true : false),
@@ -16,8 +17,8 @@ export const InputText = styled.TextInput.attrs({
   width: ${props => props.props.width};
   color: ${props => props.props.color};
 
-  border-bottom-width: 0.5px;
-  border-bottom-color: gray;
+  border-bottom-width: 1px;
+  border-bottom-color: lightgray;
 
   padding: 10px 40px;
   border-radius: 4px;

@@ -1,16 +1,11 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Container, InputText} from './styles';
 
 export default function Input(props) {
-  const users = useSelector(state => state.users);
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
 
   return (
     <Container>
@@ -29,7 +24,9 @@ export default function Input(props) {
       )}
       <InputText
         props={props}
-        onEndEditing={event => dispatch(props.action(event.nativeEvent.text))}
+        onChangeText={event => {
+          dispatch(props.action(event));
+        }}
       />
     </Container>
   );

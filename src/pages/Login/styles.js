@@ -6,9 +6,9 @@ export const Container = styled.KeyboardAvoidingView.attrs({
 })`
   width: ${Dimensions.get('screen').width};
   height: ${Dimensions.get('screen').height};
-  background: #fff;
+  background: #eb626b;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   padding-bottom: 40px;
 `;
