@@ -6,6 +6,6 @@ export function addPassword(password) {
   return {type: 'ADD_PASSWORD', password};
 }
 
-export function addCell(cell) {
-  return {type: 'ADD_CELL', cell};
+export function addCell(cellphone) {
+  return {type: 'ADD_CELL', cellphone};
 }

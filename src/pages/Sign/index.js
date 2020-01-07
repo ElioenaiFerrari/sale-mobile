@@ -1,24 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Lottie from 'lottie-react-native';
 // Components
 import {Container} from './styles';
 import {Input, ButtonSubmit} from '../../components';
 // Others
-import animation from '../../assets/animations/deploy.json';
+import animation from '../../assets/animations/data-analysis.json';
 import api from '../../services/api';
 import {addEmail, addPassword, addCell} from '../../actions/users';
 import {useSelector} from 'react-redux';
 
 export default function Sign(props) {
   const users = useSelector(state => state.users);
+  const [secure, setSecure] = useState(true);
 
-  async function handleEmail() {
+  // useEffect(() => {
+  //   console.log(users);
+  // }, [users]);
+
+  async function handleSubmit() {
     try {
-      const response = await api.post('/users', {
-        email: users.email,
-        password: users.password,
-        cellphone: users.cellphone,
-      });
+      if (
+        users.email.length &&
+        users.password.length &&
+        users.cellphone.length
+      ) {
+        const response = await api.post('/users', {
+          email: users.email,
+          password: users.password,
+          cellphone: users.cellphone,
+        });
+      } else {
+        return alert('Preencha todos os dados');
+      }
 
       alert('Conta criada com sucesso!');
       return props.navigation.navigate('Login');
@@ -35,10 +48,10 @@ export default function Sign(props) {
         source={animation}
         autoPlay
         loop
-        style={{height: 250, marginBottom: 10}}
+        style={{height: 280, marginBottom: '-20%'}}
       />
       <Input
-        focus={true}
+        focus={false}
         type="email-address"
         iconName="email"
         iconSize={20}
@@ -51,7 +64,8 @@ export default function Sign(props) {
       />
       <Input
         focus={false}
-        type="password"
+        type="text"
+        secure={secure}
         iconName="vpn-key"
         iconSize={20}
         iconColor="#eb626b"
@@ -59,6 +73,10 @@ export default function Sign(props) {
         background="#FFF"
         width="75%"
         placeholder="Senha"
+        icon2Name="remove-red-eye"
+        icon2Size={20}
+        icon2Color="#eb626b"
+        icon2Action={() => setSecure(!secure)}
         action={addPassword}
       />
       <Input
@@ -67,10 +85,10 @@ export default function Sign(props) {
         iconName="smartphone"
         iconSize={20}
         iconColor="#eb626b"
-        color="gray"
+        color="#eee"
         background="transparent"
         width="75%"
-        placeholderTextColor="#fff"
+        placeholderTextColor="#eee"
         placeholder="DDD + Celular"
         action={addCell}
       />
@@ -80,10 +98,10 @@ export default function Sign(props) {
         color="#FFF"
         width="80%"
         margin="20px 0 10px 0"
-        action={() => handleEmail()}
+        action={() => handleSubmit()}
       />
       <ButtonSubmit
-        text="Já tenho uma conta"
+        text="Tenho uma conta"
         background="#2e2151"
         color="#FFF"
         width="70%"

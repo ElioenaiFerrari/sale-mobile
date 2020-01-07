@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Lottie from 'lottie-react-native';
 import {useSelector} from 'react-redux';
 
@@ -8,28 +8,34 @@ import {Container} from './styles';
 import {Input, ButtonSubmit} from '../../components';
 // Actions
 import {addEmail, addPassword} from '../../actions/users';
-import animation from '../../assets/animations/read.json';
+import animation from '../../assets/animations/alien.json';
 import api from '../../services/api';
 
 export default function Login(props) {
+  const [secure, setSecure] = useState(true);
+
   const users = useSelector(state => state.users);
 
   async function auth() {
     try {
-      const response = await api.post('/auth', {
-        email: users.email,
-        password: users.password,
-      });
+      if (users.email.length && users.password.length) {
+        const response = await api.post('/auth', {
+          email: users.email,
+          password: users.password,
+        });
 
-      const {token} = await response.data;
+        const {token} = await response.data;
 
-      if (!token) {
-        return alert('Email ou senha incorretos!');
+        if (!token) {
+          return alert('Email ou senha incorretos!');
+        }
+
+        return props.navigation.navigate('Main');
+      } else {
+        alert('Preencha todos os dados!');
       }
-
-      return props.navigation.navigate('Main');
     } catch (error) {
-      console.log(`Error in auth: ${error}`);
+      console.log(error.response.status);
     }
   }
 
@@ -38,10 +44,9 @@ export default function Login(props) {
       <Lottie
         source={animation}
         autoPlay
-        loop
+        loop={false}
         style={{
           height: 300,
-          marginBottom: 10,
         }}
       />
       <Input
@@ -50,12 +55,13 @@ export default function Login(props) {
         iconName="email"
         iconSize={20}
         iconColor="#2e2151"
-        color="#2e2151"
+        color="#eee"
         background="transparent"
-        placeholderTextColor="#2e2151"
+        placeholderTextColor="#eee"
         width="75%"
         placeholder="Email"
         action={addEmail}
+        borderColor="#2e2151"
       />
       <Input
         focus={false}
@@ -63,11 +69,17 @@ export default function Login(props) {
         iconName="vpn-key"
         iconSize={20}
         iconColor="#2e2151"
-        color="#2e2151"
+        color="#eee"
         background="transparent"
-        placeholderTextColor="#2e2151"
+        placeholderTextColor="#eee"
         width="75%"
+        borderColor="#2e2151"
         placeholder="Senha"
+        icon2Name="remove-red-eye"
+        icon2Size={20}
+        icon2Color="#2e2151"
+        icon2Action={() => setSecure(!secure)}
+        secure={secure}
         action={addPassword}
       />
       <ButtonSubmit
