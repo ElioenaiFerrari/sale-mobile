@@ -1,17 +1,39 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useCallback} from 'react';
 
 // styles
-import {Container} from './styles';
+import {Container, Refresh} from './styles';
 // Components
 import {Card, Courses} from '../../components';
 import api from '../../services/api';
 import {useSelector} from 'react-redux';
+import {RefreshControl} from 'react-native';
 
 export default function Main() {
+  const [data, setData] = useState([]);
+  const [refreshing, setRefreshing] = useState(false);
   const users = useSelector(state => state.users);
 
-  const [data, setData] = useState([]);
+  /**
+   * Wait the time and refresh in 2 seconds
+   */
+  function wait(timeout) {
+    return new Promise(resolve => {
+      setTimeout(resolve, timeout);
+    });
+  }
 
+  /**
+   * Set refresh to true and refresh your feed
+   */
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+
+    wait(2000).then(() => setRefreshing(false));
+  }, []);
+
+  /**
+   * Loading the feed
+   */
   useEffect(() => {
     async function loadFeed() {
       const response = await api.get('/posts', {
@@ -20,15 +42,21 @@ export default function Main() {
 
       const feed = await response.data;
 
-      setData([...data, ...feed]);
+      setData(feed);
     }
     loadFeed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refreshing]);
+
   return (
     <Container>
       <Courses />
-      <Card data={data} />
+      <Refresh
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
+        <Card data={data} />
+      </Refresh>
     </Container>
   );
 }

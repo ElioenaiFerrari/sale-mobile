@@ -19,7 +19,7 @@ const Tabs = createBottomTabNavigator(
       screen: Warning,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <Icon name="person" color={tintColor} size={25} />
+          <Icon name="warning" color={tintColor} size={25} />
         ),
       },
     },
