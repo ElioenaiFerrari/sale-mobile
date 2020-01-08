@@ -1,5 +1,4 @@
-import React, {useState} from 'react';
-import {Animated} from 'react-native';
+import React from 'react';
 
 import {
   Container,
@@ -11,11 +10,10 @@ import {
   ListContent,
   Content,
   ListFooter,
+  Author,
 } from './styles';
 
 export default function Card(props) {
-  const [zoom, setZoom] = useState();
-
   return (
     <Container>
       <List
@@ -25,12 +23,14 @@ export default function Card(props) {
           <ListItem>
             <ListHeader>
               <Title>{item.title}</Title>
-              <Image source={{uri: item.image}} />
+              <Image source={{uri: item.image_url}} />
             </ListHeader>
             <ListContent>
-              <Content>{item.content}</Content>
+              <Content>{item.description}</Content>
             </ListContent>
-            <ListFooter />
+            <ListFooter>
+              {/* <Author>{item.author.email}</Author> */}
+            </ListFooter>
           </ListItem>
         )}
       />

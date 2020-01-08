@@ -6,7 +6,7 @@ import {Input, ButtonSubmit} from '../../components';
 // Others
 import animation from '../../assets/animations/data-analysis.json';
 import api from '../../services/api';
-import {addEmail, addPassword, addCell} from '../../actions/users';
+import {addEmail, addPassword, addCell, addName} from '../../actions/users';
 import {useSelector} from 'react-redux';
 
 export default function Sign(props) {
@@ -22,12 +22,14 @@ export default function Sign(props) {
       if (
         users.email.length &&
         users.password.length &&
-        users.cellphone.length
+        users.cellphone.length &&
+        users.name.length
       ) {
-        const response = await api.post('/users', {
+        await api.post('/register', {
           email: users.email,
           password: users.password,
           cellphone: users.cellphone,
+          name: users.name,
         });
       } else {
         return alert('Preencha todos os dados');
@@ -52,6 +54,18 @@ export default function Sign(props) {
       />
       <Input
         focus={false}
+        type="text"
+        iconName="person"
+        iconSize={20}
+        iconColor="#eb626b"
+        color="gray"
+        background="#FFF"
+        width="70%"
+        placeholder="Nome"
+        action={addName}
+      />
+      <Input
+        focus={false}
         type="email-address"
         iconName="email"
         iconSize={20}
@@ -71,7 +85,7 @@ export default function Sign(props) {
         iconColor="#eb626b"
         color="gray"
         background="#FFF"
-        width="75%"
+        width="70%"
         placeholder="Senha"
         icon2Name="remove-red-eye"
         icon2Size={20}
@@ -104,7 +118,7 @@ export default function Sign(props) {
         text="Tenho uma conta"
         background="#2e2151"
         color="#FFF"
-        width="70%"
+        width="75%"
         margin="0"
         action={() => props.navigation.navigate('Login')}
       />

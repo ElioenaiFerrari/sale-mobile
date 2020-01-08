@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import {Main} from '../pages';
+import {Main, Warning} from '../pages';
 
 const Tabs = createBottomTabNavigator(
   {
@@ -15,11 +15,19 @@ const Tabs = createBottomTabNavigator(
         ),
       },
     },
+    Warning: {
+      screen: Warning,
+      navigationOptions: {
+        tabBarIcon: ({tintColor}) => (
+          <Icon name="person" color={tintColor} size={25} />
+        ),
+      },
+    },
   },
   {
     tabBarOptions: {
       activeTintColor: '#FFF',
-      inactiveTintColor: '#eee',
+      inactiveTintColor: 'rgba(255, 255, 255, 0.5)',
       showLabel: false,
       style: {
         backgroundColor: '#eb626b',

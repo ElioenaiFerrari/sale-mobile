@@ -1,21 +1,28 @@
 import React, {useState} from 'react';
 import Lottie from 'lottie-react-native';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 
 // Styles
 import {Container} from './styles';
 // Components
 import {Input, ButtonSubmit} from '../../components';
 // Actions
-import {addEmail, addPassword} from '../../actions/users';
-import animation from '../../assets/animations/alien.json';
+import {addEmail, addPassword, addToken} from '../../actions/users';
+import animation from '../../assets/animations/read.json';
 import api from '../../services/api';
 
 export default function Login(props) {
+  // Change password visible or not
   const [secure, setSecure] = useState(true);
 
+  // Redux
+  const dispatch = useDispatch();
   const users = useSelector(state => state.users);
 
+  // useEffect(() => {
+  //   console.log(users);
+  // }, [users]);
+  // Authentication/Login
   async function auth() {
     try {
       if (users.email.length && users.password.length) {
@@ -29,6 +36,8 @@ export default function Login(props) {
         if (!token) {
           return alert('Email ou senha incorretos!');
         }
+
+        await dispatch(addToken(token));
 
         return props.navigation.navigate('Main');
       } else {
@@ -44,7 +53,7 @@ export default function Login(props) {
       <Lottie
         source={animation}
         autoPlay
-        loop={false}
+        loop
         style={{
           height: 300,
         }}

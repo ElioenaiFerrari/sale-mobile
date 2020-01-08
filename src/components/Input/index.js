@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -6,6 +6,11 @@ import {Container, InputText, Touch} from './styles';
 
 export default function Input(props) {
   const dispatch = useDispatch();
+  const users = useSelector(state => state.users);
+
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
 
   return (
     <Container>
@@ -36,8 +41,7 @@ export default function Input(props) {
           <Icon
             style={{
               position: 'absolute',
-              left: 0,
-              marginLeft: '67%',
+              right: 10,
               zIndex: 1,
             }}
             name={props.icon2Name}

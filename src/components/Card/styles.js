@@ -52,4 +52,14 @@ export const Content = styled.Text`
   text-align: justify;
 `;
 
-export const ListFooter = styled.View``;
+export const ListFooter = styled.View`
+  flex: 1;
+  align-items: flex-end;
+  justify-content: flex-end;
+`;
+
+export const Author = styled.Text`
+  font-size: 14px;
+  color: #eb626b;
+  font-weight: bold;
+`;
