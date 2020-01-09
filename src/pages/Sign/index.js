@@ -50,6 +50,7 @@ export default function Sign(props) {
           password: users.password,
           cellphone: users.cellphone,
           name: users.name,
+          access: 'client',
         });
         /**
          * If at least one input on null

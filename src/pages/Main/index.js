@@ -8,7 +8,8 @@ import api from '../../services/api';
 /**
  * Refresh control
  */
-import {RefreshControl, AsyncStorage} from 'react-native';
+import {RefreshControl} from 'react-native';
+import {getToken} from '../../services/auth';
 
 export default function Main(props) {
   /**
@@ -26,9 +27,7 @@ export default function Main(props) {
    * Wait the time and refresh feed in 2 seconds
    */
   function wait(timeout) {
-    return new Promise(resolve => {
-      setTimeout(resolve, timeout);
-    });
+    return new Promise(resolve => setTimeout(resolve, timeout));
   }
 
   /**
@@ -49,13 +48,12 @@ export default function Main(props) {
        * Save the JWT token on localStorage to consult after
        * and authenticate headers with axios in API
        */
-      const token = await AsyncStorage.getItem('AUTH_TOKEN');
 
       /**
        * Authentication JWT, and return the data on GET /posts
        */
       const response = await api.get('/posts', {
-        headers: {Authorization: `Bearer ${token}`},
+        headers: {Authorization: await getToken()},
       });
 
       const feed = await response.data;

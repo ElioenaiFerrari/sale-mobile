@@ -19,3 +19,9 @@ export const isSignedIn = async () => {
   }
   return false;
 };
+
+export const getToken = async () => {
+  const token = await AsyncStorage.getItem('AUTH_TOKEN');
+
+  return `Bearer ${token}`.toString();
+};
