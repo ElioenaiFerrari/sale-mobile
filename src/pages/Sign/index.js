@@ -13,10 +13,6 @@ export default function Sign(props) {
   const users = useSelector(state => state.users);
   const [secure, setSecure] = useState(true);
 
-  // useEffect(() => {
-  //   console.log(users);
-  // }, [users]);
-
   async function handleSubmit() {
     try {
       if (
@@ -120,7 +116,9 @@ export default function Sign(props) {
         color="#FFF"
         width="75%"
         margin="0"
-        action={() => props.navigation.navigate('Login')}
+        action={() => {
+          props.navigation.navigate('Login');
+        }}
       />
     </Container>
   );

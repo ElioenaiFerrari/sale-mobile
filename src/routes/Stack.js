@@ -6,7 +6,10 @@ const Stack = createStackNavigator(
     Sign,
     Login,
   },
-  {headerMode: 'none', initialRouteName: 'Sign'},
+  {
+    headerMode: 'none',
+    initialRouteName: 'Sign',
+  },
 );
 
 export default Stack;

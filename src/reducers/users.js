@@ -9,10 +9,10 @@ export default function users(
       return {...state, password: action.password};
     case 'ADD_CELL':
       return {...state, cellphone: action.cellphone};
-    case 'ADD_TOKEN':
-      return {...state, token: action.token};
     case 'ADD_NAME':
       return {...state, name: action.name};
+    case 'ADD_COURSE':
+      return {...state, course: action.course};
     default:
       return state;
   }

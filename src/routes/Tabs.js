@@ -3,7 +3,7 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import {Main, Warning} from '../pages';
+import {Main, Notification} from '../pages';
 
 const Tabs = createBottomTabNavigator(
   {
@@ -15,8 +15,8 @@ const Tabs = createBottomTabNavigator(
         ),
       },
     },
-    Warning: {
-      screen: Warning,
+    Notification: {
+      screen: Notification,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="warning" color={tintColor} size={25} />

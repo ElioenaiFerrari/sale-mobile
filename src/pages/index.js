@@ -1,6 +1,6 @@
 import Login from './Login';
 import Main from './Main';
 import Sign from './Sign';
-import Warning from './Warning';
+import Notification from './Notification';
 
-export {Login, Main, Sign, Warning};
+export {Login, Main, Sign, Notification};

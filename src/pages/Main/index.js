@@ -5,16 +5,25 @@ import {Container, Refresh} from './styles';
 // Components
 import {Card, Courses} from '../../components';
 import api from '../../services/api';
-import {useSelector} from 'react-redux';
-import {RefreshControl} from 'react-native';
+/**
+ * Refresh control
+ */
+import {RefreshControl, AsyncStorage} from 'react-native';
 
-export default function Main() {
-  const [data, setData] = useState([]);
-  const [refreshing, setRefreshing] = useState(false);
-  const users = useSelector(state => state.users);
-
+export default function Main(props) {
   /**
-   * Wait the time and refresh in 2 seconds
+   * The data consult a database and your table items
+   */
+  const [data, setData] = useState([]);
+  /**
+   * Refreshing is state
+   * on true => refresh feed
+   * on false => refresh complete
+   */
+  const [refreshing, setRefreshing] = useState(false);
+  /**
+   * swap pick on screen to down => refresh feed
+   * Wait the time and refresh feed in 2 seconds
    */
   function wait(timeout) {
     return new Promise(resolve => {
@@ -23,7 +32,7 @@ export default function Main() {
   }
 
   /**
-   * Set refresh to true and refresh your feed
+   * Set refresh to true and after two seconds to false
    */
   const onRefresh = useCallback(() => {
     setRefreshing(true);
@@ -32,12 +41,21 @@ export default function Main() {
   }, []);
 
   /**
-   * Loading the feed
+   * Loading the feed data
    */
   useEffect(() => {
     async function loadFeed() {
+      /**
+       * Save the JWT token on localStorage to consult after
+       * and authenticate headers with axios in API
+       */
+      const token = await AsyncStorage.getItem('AUTH_TOKEN');
+
+      /**
+       * Authentication JWT, and return the data on GET /posts
+       */
       const response = await api.get('/posts', {
-        headers: {Authorization: `Bearer ${users.token}`},
+        headers: {Authorization: `Bearer ${token}`},
       });
 
       const feed = await response.data;
@@ -50,10 +68,18 @@ export default function Main() {
 
   return (
     <Container>
+      {/*
+        Courses is a picker
+        Have all courses of UCV
+      */}
       <Courses />
       <Refresh
         refreshControl={
-          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          <RefreshControl
+            refreshing={refreshing}
+            colors={['#eb626b']}
+            onRefresh={onRefresh}
+          />
         }>
         <Card data={data} />
       </Refresh>

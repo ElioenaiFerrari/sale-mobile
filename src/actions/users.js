@@ -14,6 +14,6 @@ export function addCell(cellphone) {
   return {type: 'ADD_CELL', cellphone};
 }
 
-export function addToken(token) {
-  return {type: 'ADD_TOKEN', token};
+export function addCourse(course) {
+  return {type: 'ADD_COURSE', course};
 }

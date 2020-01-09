@@ -1,28 +1,40 @@
 import React, {useState} from 'react';
 import Lottie from 'lottie-react-native';
-import {useSelector, useDispatch} from 'react-redux';
-
-// Styles
+import {useSelector} from 'react-redux';
+/**
+ * Styles
+ */
 import {Container} from './styles';
-// Components
+/**
+ * Actions of reducer users
+ */
+import {addEmail, addPassword} from '../../actions/users';
+/**
+ * Components
+ */
 import {Input, ButtonSubmit} from '../../components';
-// Actions
-import {addEmail, addPassword, addToken} from '../../actions/users';
+
+/**
+ * Animation => Lottie JSON
+ * api => axios baseURL
+ * onSignedIn => Verify if exists JWT token
+ */
 import animation from '../../assets/animations/read.json';
 import api from '../../services/api';
+import {onSignedIn} from '../../services/auth';
 
 export default function Login(props) {
-  // Change password visible or not
+  /*
+   Change password visible or not
+   */
   const [secure, setSecure] = useState(true);
-
-  // Redux
-  const dispatch = useDispatch();
+  /**
+   * Consult the users store and use
+   */
   const users = useSelector(state => state.users);
-
-  // useEffect(() => {
-  //   console.log(users);
-  // }, [users]);
-  // Authentication/Login
+  /**
+   * Function to verify you email and password => Login
+   */
   async function auth() {
     try {
       if (users.email.length && users.password.length) {
@@ -37,7 +49,7 @@ export default function Login(props) {
           return alert('Email ou senha incorretos!');
         }
 
-        await dispatch(addToken(token));
+        onSignedIn(token);
 
         return props.navigation.navigate('Main');
       } else {
