@@ -1,4 +1,14 @@
 import React from 'react';
+/**
+ * The ButtonSubmit are component
+ * Are used to dispatch a action click
+ * Action is defined for your/developer
+ * Is usual, practic and easy
+ */
+/**
+ * action => Function defined for dev
+ * props => propertys
+ */
 
 import {Button, ButtonText} from './styles';
 

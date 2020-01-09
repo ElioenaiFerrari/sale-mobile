@@ -1,5 +1,11 @@
 import React from 'react';
-
+/**
+ * Warning is the notices with UCV
+ * cash buy
+ * re-register
+ * pending documents
+ * etc...
+ */
 import {Container} from './styles';
 import {Warnings} from '../../components';
 

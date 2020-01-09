@@ -1,5 +1,10 @@
 import React from 'react';
-
+/**
+ * The card is a containers in your feed of notices
+ * contain id, title, image_url and description
+ *
+ * Styles
+ */
 import {
   Container,
   List,
@@ -10,13 +15,18 @@ import {
   ListContent,
   Content,
   ListFooter,
-  Author,
 } from './styles';
 
+/**
+ * data is a response of API
+ */
 export default function Card(props) {
   return (
     <Container>
       <List
+        /**
+         * data here
+         */
         data={props.data}
         keyExtractor={item => item.id}
         renderItem={({item}) => (

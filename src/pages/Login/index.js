@@ -36,21 +36,33 @@ export default function Login(props) {
    * Function to verify you email and password => Login
    */
   async function auth() {
+    /**
+     * Email and password not nullable
+     */
     try {
       if (users.email.length && users.password.length) {
         const response = await api.post('/auth', {
           email: users.email,
           password: users.password,
         });
-
+        /**
+         * Extract JWT token
+         */
         const {token} = await response.data;
-
+        /**
+         * If dont's exist token
+         */
         if (!token) {
+          //Return error
           return alert('Email ou senha incorretos!');
         }
-
+        /**
+         * The app stay login now
+         */
         onSignedIn(token);
-
+        /**
+         * Go to main screen
+         */
         return props.navigation.navigate('Main');
       } else {
         alert('Preencha todos os dados!');
@@ -62,6 +74,9 @@ export default function Login(props) {
 
   return (
     <Container>
+      {/*
+        Lottie animation
+       */}
       <Lottie
         source={animation}
         autoPlay

@@ -1,10 +1,21 @@
 import React, {useState, useEffect} from 'react';
-
-import {Container, CourseList} from './styles';
-
-import courses from './courses';
+/**
+ * Courses is a Picker/Select that contain all courses of UCV
+ *
+ * Redux
+ * Tools
+ * Actions users
+ */
 import {useSelector, useDispatch} from 'react-redux';
 import {addCourse} from '../../actions/users';
+/**
+ * Styles
+ */
+import {Container, CourseList} from './styles';
+/**
+ * Array of all courses contain
+ */
+import courses from './courses';
 
 export default function Courses() {
   const dispatch = useDispatch();

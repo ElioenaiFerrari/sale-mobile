@@ -1,4 +1,7 @@
-import React, {useEffect} from 'react';
+import React from 'react';
+/**
+ * Input are the simple textInput that have functions, icons and dispatch
+ */
 import {useDispatch, useSelector} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
@@ -6,11 +9,6 @@ import {Container, InputText, Touch} from './styles';
 
 export default function Input(props) {
   const dispatch = useDispatch();
-  const users = useSelector(state => state.users);
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
 
   return (
     <Container>

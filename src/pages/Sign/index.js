@@ -1,19 +1,38 @@
 import React, {useState} from 'react';
 import Lottie from 'lottie-react-native';
-// Components
+/**
+ * Redux
+ * Styles
+ * Components
+ * Services
+ */
+import {useSelector} from 'react-redux';
 import {Container} from './styles';
 import {Input, ButtonSubmit} from '../../components';
-// Others
-import animation from '../../assets/animations/data-analysis.json';
 import api from '../../services/api';
+/**
+ * Redux users actions dispatch
+ * Animation Lottie path
+ */
 import {addEmail, addPassword, addCell, addName} from '../../actions/users';
-import {useSelector} from 'react-redux';
+import animation from '../../assets/animations/data-analysis.json';
 
 export default function Sign(props) {
   const users = useSelector(state => state.users);
+  /**
+   * If true => Hidden password
+   * else => Show password
+   * Touch the eye icon to you see
+   */
   const [secure, setSecure] = useState(true);
 
+  /**
+   * Create account function
+   */
   async function handleSubmit() {
+    /**
+     * The inputs not are nullable
+     */
     try {
       if (
         users.email.length &&
@@ -21,17 +40,32 @@ export default function Sign(props) {
         users.cellphone.length &&
         users.name.length
       ) {
+        /**
+         * If all inputs not are nullable
+         * POST /register in API
+         * create tables items
+         */
         await api.post('/register', {
           email: users.email,
           password: users.password,
           cellphone: users.cellphone,
           name: users.name,
         });
+        /**
+         * If at least one input on null
+         */
       } else {
         return alert('Preencha todos os dados');
       }
-
+      /**
+       * Success on create account
+       * have a good time!
+       */
       alert('Conta criada com sucesso!');
+      /**
+       * Navigate to login
+       * Login with you have email and password
+       */
       return props.navigation.navigate('Login');
     } catch (error) {
       if (error.response.status === 500) {
