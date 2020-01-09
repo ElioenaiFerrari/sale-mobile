@@ -7,14 +7,20 @@ import {isSignedIn} from './services/auth';
 import Route from './routes';
 
 export default function App() {
+  /**
+   * logged => User alreadys login in app?
+   */
+  const [logged, setLogged] = useState(false);
+  const Routes = Route(logged);
+  /**
+   * if yes => initial screen => Main
+   * else => Sign
+   */
   useEffect(() => {
     isSignedIn()
       .then(res => setLogged(res))
       .catch(error => alert(error));
   }, []);
-
-  const [logged, setLogged] = useState(false);
-  const Routes = Route(logged);
 
   return (
     <Provider store={store}>
@@ -23,3 +29,7 @@ export default function App() {
     </Provider>
   );
 }
+
+/**
+ * Thanks to Fork
+ */
