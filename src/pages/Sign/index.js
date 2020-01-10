@@ -8,14 +8,15 @@ import Lottie from 'lottie-react-native';
  */
 import {useSelector} from 'react-redux';
 import {Container} from './styles';
-import {Input, ButtonSubmit} from '../../components';
+import {Input, ButtonSubmit, Courses} from '../../components';
 import api from '../../services/api';
 /**
  * Redux users actions dispatch
  * Animation Lottie path
  */
-import {addEmail, addPassword, addCell, addName} from '../../actions/users';
+import {addEmail, addPassword, addName} from '../../actions/users';
 import animation from '../../assets/animations/data-analysis.json';
+import {darkColor, lightColor} from '../../colors';
 
 export default function Sign(props) {
   const users = useSelector(state => state.users);
@@ -34,12 +35,7 @@ export default function Sign(props) {
      * The inputs not are nullable
      */
     try {
-      if (
-        users.email.length &&
-        users.password.length &&
-        users.cellphone.length &&
-        users.name.length
-      ) {
+      if (users.email.length && users.password.length && users.name.length) {
         /**
          * If all inputs not are nullable
          * POST /register in API
@@ -48,7 +44,6 @@ export default function Sign(props) {
         await api.post('/register', {
           email: users.email,
           password: users.password,
-          cellphone: users.cellphone,
           name: users.name,
           access: 'client',
         });
@@ -83,7 +78,7 @@ export default function Sign(props) {
         loop
         style={{height: 280, marginBottom: '-20%'}}
       />
-      <Input
+      {/* <Input
         focus={false}
         type="text"
         iconName="person"
@@ -94,7 +89,7 @@ export default function Sign(props) {
         width="70%"
         placeholder="Nome"
         action={addName}
-      />
+      /> */}
       <Input
         focus={false}
         type="email-address"
@@ -103,7 +98,7 @@ export default function Sign(props) {
         iconColor="#eb626b"
         color="gray"
         background="#FFF"
-        width="75%"
+        width="70%"
         placeholder="Email"
         action={addEmail}
       />
@@ -124,24 +119,15 @@ export default function Sign(props) {
         icon2Action={() => setSecure(!secure)}
         action={addPassword}
       />
-      <Input
-        focus={false}
-        type="numeric"
-        iconName="smartphone"
-        iconSize={20}
-        iconColor="#eb626b"
-        color="#eee"
-        background="transparent"
-        width="75%"
-        placeholderTextColor="#eee"
-        placeholder="DDD + Celular"
-        action={addCell}
-      />
+      {/*
+          The dispatch redux on the includes inside component 'Courses'
+        */}
+      <Courses />
       <ButtonSubmit
         text="Criar conta"
-        background="#eb626b"
-        color="#FFF"
-        width="80%"
+        background={lightColor}
+        color="#fff"
+        width="72%"
         margin="20px 0 10px 0"
         action={() => handleSubmit()}
       />
@@ -149,7 +135,7 @@ export default function Sign(props) {
         text="Tenho uma conta"
         background="#2e2151"
         color="#FFF"
-        width="75%"
+        width="72%"
         margin="0"
         action={() => {
           props.navigation.navigate('Login');

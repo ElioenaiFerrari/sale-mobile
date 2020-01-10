@@ -10,10 +10,6 @@ export function addPassword(password) {
   return {type: 'ADD_PASSWORD', password};
 }
 
-export function addCell(cellphone) {
-  return {type: 'ADD_CELL', cellphone};
-}
-
 export function addCourse(course) {
   return {type: 'ADD_COURSE', course};
 }

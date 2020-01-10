@@ -70,7 +70,6 @@ export default function Main(props) {
         Courses is a picker
         Have all courses of UCV
       */}
-      <Courses />
       <Refresh
         refreshControl={
           <RefreshControl

@@ -94,7 +94,7 @@ export default function Login(props) {
         color="#eee"
         background="transparent"
         placeholderTextColor="#eee"
-        width="75%"
+        width="70%"
         placeholder="Email"
         action={addEmail}
         borderColor="#2e2151"
@@ -108,7 +108,7 @@ export default function Login(props) {
         color="#eee"
         background="transparent"
         placeholderTextColor="#eee"
-        width="75%"
+        width="70%"
         borderColor="#2e2151"
         placeholder="Senha"
         icon2Name="remove-red-eye"
@@ -122,7 +122,7 @@ export default function Login(props) {
         text="Entrar"
         background="#2e2151"
         color="#FFF"
-        width="80%"
+        width="72%"
         margin="20px 0 0 0"
         action={() => auth()}
       />
@@ -130,7 +130,7 @@ export default function Login(props) {
         text="Esqueceu a senha?"
         background="rgba(0, 0, 0, 0);"
         color="#FFF"
-        width="80%"
+        width="72%"
         margin="10px 0 0 0"
       />
     </Container>

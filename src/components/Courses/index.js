@@ -23,6 +23,9 @@ export default function Courses() {
    * Course on change store
    */
   const course = useSelector(state => state.users.course);
+  const users = useSelector(state => state.users);
+
+  useEffect(() => console.log(users), [users]);
 
   return (
     <Container>
