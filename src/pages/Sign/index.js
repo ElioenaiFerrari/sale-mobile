@@ -16,7 +16,7 @@ import api from '../../services/api';
  */
 import {addEmail, addPassword, addName} from '../../actions/users';
 import animation from '../../assets/animations/data-analysis.json';
-import {darkColor, lightColor} from '../../colors';
+import {lightColor} from '../../colors';
 
 export default function Sign(props) {
   const users = useSelector(state => state.users);
@@ -35,7 +35,7 @@ export default function Sign(props) {
      * The inputs not are nullable
      */
     try {
-      if (users.email.length && users.password.length && users.name.length) {
+      if (users.email.length && users.password.length && users.course.length) {
         /**
          * If all inputs not are nullable
          * POST /register in API
@@ -44,8 +44,8 @@ export default function Sign(props) {
         await api.post('/register', {
           email: users.email,
           password: users.password,
-          name: users.name,
           access: 'client',
+          course: users.course,
         });
         /**
          * If at least one input on null
@@ -66,6 +66,8 @@ export default function Sign(props) {
     } catch (error) {
       if (error.response.status === 500) {
         alert('Esse email já está sendo usado');
+      } else {
+        console.log('============' + error);
       }
     }
   }

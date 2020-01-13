@@ -41,14 +41,15 @@ export default function Login(props) {
      */
     try {
       if (users.email.length && users.password.length) {
-        const response = await api.post('/auth', {
+        const {data} = await api.post('/auth', {
           email: users.email,
           password: users.password,
         });
         /**
          * Extract JWT token
          */
-        const {token} = await response.data;
+        const token = await data;
+
         /**
          * If dont's exist token
          */

@@ -52,13 +52,11 @@ export default function Main(props) {
       /**
        * Authentication JWT, and return the data on GET /posts
        */
-      const response = await api.get('/posts', {
+      const {data} = await api.get('/posts', {
         headers: {Authorization: await getToken()},
       });
 
-      const feed = await response.data;
-
-      setData(feed);
+      setData(data);
     }
     loadFeed();
     // eslint-disable-next-line react-hooks/exhaustive-deps
