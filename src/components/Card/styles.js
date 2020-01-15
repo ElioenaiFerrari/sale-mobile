@@ -1,4 +1,6 @@
 import styled from 'styled-components/native';
+import {lightColor, darkColor} from '../../colors';
+import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
@@ -13,25 +15,38 @@ export const List = styled.FlatList.attrs({
   width: 100%;
 `;
 
+export const Modal = styled.Modal.attrs({
+  transparent: true,
+})``;
+
+export const ContentContainer = styled.View`
+  flex: 1;
+  margin: 150px 1px 0;
+  background: ${darkColor};
+  padding: 15px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+`;
+
 export const ListItem = styled.TouchableOpacity`
-  height: 220px;
+  height: 300px;
   background: #fff;
-  margin: 5px 10px;
+  margin: 10px;
   padding: 5px;
-  border-radius: 2px;
-  elevation: 2;
+  border-radius: 4px;
+  elevation: 5;
 `;
 
 export const ListHeader = styled.View`
   border-bottom-width: 0.5px;
   border-bottom-color: #eee;
-  height: 70%;
+  height: 80%;
 `;
 
 export const Title = styled.Text`
   text-align: center;
-  font-size: 18px;
-  color: #eb626b;
+  font-size: 35px;
+  color: ${lightColor};
   font-weight: bold;
 `;
 
@@ -45,8 +60,8 @@ export const ListContent = styled.View`
 `;
 
 export const Content = styled.Text`
-  font-size: 14px;
-  color: #2e2151;
+  font-size: 18px;
+  color: #fff;
   font-weight: bold;
   text-align: justify;
 `;

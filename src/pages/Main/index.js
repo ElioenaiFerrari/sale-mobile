@@ -3,7 +3,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 // styles
 import {Container, Refresh} from './styles';
 // Components
-import {Card, Courses} from '../../components';
+import {Card} from '../../components';
 import api from '../../services/api';
 /**
  * Refresh control
