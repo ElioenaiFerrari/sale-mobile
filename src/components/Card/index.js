@@ -39,6 +39,10 @@ export default function Card(props) {
   }
   return (
     <Container>
+      {/*
+        Modal shows card on the click feed notice.
+        contains informations for a selected notice.
+      */}
       <Modal
         animationType="slide"
         visible={visible}
@@ -72,9 +76,6 @@ export default function Card(props) {
               <Title>{item.title}</Title>
               <Image source={{uri: item.image_url}} />
             </ListHeader>
-            <ListFooter>
-              {/* <Author>{item.author.email}</Author> */}
-            </ListFooter>
           </ListItem>
         )}
       />

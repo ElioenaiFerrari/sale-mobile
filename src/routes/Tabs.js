@@ -1,11 +1,11 @@
 import React from 'react';
 
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {createBottomTabNavigator} from 'react-navigation-tabs';
-
 import {Main, Notification} from '../pages';
+import {darkColor, lightColor} from '../colors';
+import {createMaterialTopTabNavigator} from 'react-navigation-tabs';
 
-const Tabs = createBottomTabNavigator(
+const Tabs = createMaterialTopTabNavigator(
   {
     Main: {
       screen: Main,
@@ -17,6 +17,7 @@ const Tabs = createBottomTabNavigator(
     },
     Notification: {
       screen: Notification,
+
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
           <Icon name="warning" color={tintColor} size={25} />
@@ -26,17 +27,15 @@ const Tabs = createBottomTabNavigator(
   },
   {
     tabBarOptions: {
-      activeTintColor: '#FFF',
-      inactiveTintColor: 'rgba(255, 255, 255, 0.5)',
       showLabel: false,
-      style: {
-        backgroundColor: '#eb626b',
+      showIcon: true,
+      activeTintColor: lightColor,
+      tabStyle: {
+        backgroundColor: darkColor,
       },
     },
+
     initialRouteName: 'Main',
-    style: {
-      backgroundColor: 'blue',
-    },
   },
 );
 

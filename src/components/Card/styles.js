@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
 import {lightColor, darkColor} from '../../colors';
-import {Dimensions} from 'react-native';
 
 export const Container = styled.View`
   flex: 1;
@@ -29,51 +28,38 @@ export const ContentContainer = styled.View`
 `;
 
 export const ListItem = styled.TouchableOpacity`
-  height: 300px;
-  background: #fff;
-  margin: 10px;
-  padding: 5px;
-  border-radius: 4px;
+  height: 230px;
+  background: ${darkColor};
+  margin: 10px 5px;
+  border-radius: 10px;
   elevation: 5;
 `;
 
 export const ListHeader = styled.View`
   border-bottom-width: 0.5px;
   border-bottom-color: #eee;
-  height: 80%;
+  height: 100%;
 `;
 
 export const Title = styled.Text`
   text-align: center;
   font-size: 35px;
   color: ${lightColor};
+  z-index: 1;
   font-weight: bold;
 `;
 
 export const Image = styled.Image.attrs({resizeMode: 'cover'})`
   flex: 1;
+  opacity: 0.2;
   border-radius: 2px;
 `;
 
-export const ListContent = styled.View`
-  margin-top: 5px;
-`;
+export const ListContent = styled.View``;
 
 export const Content = styled.Text`
   font-size: 18px;
   color: #fff;
   font-weight: bold;
   text-align: justify;
-`;
-
-export const ListFooter = styled.View`
-  flex: 1;
-  align-items: flex-end;
-  justify-content: flex-end;
-`;
-
-export const Author = styled.Text`
-  font-size: 14px;
-  color: #eb626b;
-  font-weight: bold;
 `;
