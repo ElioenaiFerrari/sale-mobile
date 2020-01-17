@@ -12,7 +12,7 @@ import React from 'react';
 
 import {Button, ButtonText} from './styles';
 
-export default function ButtonSubmit(props) {
+const ButtonSubmit = React.memo(props => {
   return (
     <Button props={props}>
       <ButtonText onPress={props.action} props={props}>
@@ -20,4 +20,6 @@ export default function ButtonSubmit(props) {
       </ButtonText>
     </Button>
   );
-}
+});
+
+export default ButtonSubmit;

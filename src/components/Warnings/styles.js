@@ -1,6 +1,5 @@
 import styled from 'styled-components/native';
-import {Animated} from 'react-native';
-import {lightColor} from '../../colors';
+import {lightColor, darkColor} from '../../colors';
 
 export const Container = styled.View`
   flex: 1;
@@ -15,16 +14,16 @@ export const List = styled.FlatList.attrs({
 `;
 
 export const ListItem = styled.View`
+  flex: 1;
+  max-height: 300px;
   flex-direction: row;
-  padding: 0 15px;
+  padding: 15px;
   background: #fff;
-  align-items: center;
   justify-content: flex-start;
-  width: 100%;
-  height: 100px;
   elevation: 4;
   margin: 5px 0;
   border-radius: 4px;
+  flex-wrap: wrap;
 `;
 
 export const Description = styled.Text`
@@ -36,8 +35,17 @@ export const Description = styled.Text`
 
 export const LeftView = styled.View`
   width: 100%;
-  height: 100px;
-  background: ${lightColor};
+  height: 90%;
+  align-self: center;
+  background: ${darkColor};
+  align-items: center;
+  padding: 0 20px;
+  border-radius: 4px;
+  flex-direction: row;
 `;
 
-export const LeftViewText = styled.Text``;
+export const LeftViewText = styled.Text`
+  font-size: 22px;
+  color: ${lightColor};
+  margin-left: 10px;
+`;

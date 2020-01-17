@@ -1,5 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import * as Animatable from 'react-native-animatable';
 /**
  * The card is a containers in your feed of notices
  * contain id, title, image_url and description
@@ -26,10 +27,24 @@ import {getToken} from '../../services/auth';
 /**
  * data is a response of API
  */
-export default function Card(props) {
-  const [visible, setVisible] = useState(false);
-  const [info, setInfo] = useState({});
 
+/**
+ * Create animated icon
+ */
+const AnimatableIcon = Animatable.createAnimatableComponent(Icon);
+
+const Card = React.memo(props => {
+  const IconRef = React.useRef();
+  const ModalRef = React.useRef();
+
+  const [visible, setVisible] = React.useState(false);
+  const [info, setInfo] = React.useState({});
+  const [isFavorite, setIsFavorite] = React.useState(false);
+
+  /**
+   * This function shower notice if you click
+   * The modal turn open
+   */
   async function show(id) {
     const {data} = await api.get(`/posts/${id}`, {
       headers: {Authorization: await getToken()},
@@ -47,13 +62,40 @@ export default function Card(props) {
         animationType="slide"
         visible={visible}
         transparent={true}
-        onRequestClose={() => setVisible(false)}>
-        <ContentContainer>
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        onRequestClose={React.useCallback(() => setVisible(false), [visible])}>
+        <ContentContainer useNativeDriver ref={ModalRef}>
+          {/*
+            Icon arrow down
+            close the modal
+          */}
           <Icon
             name="keyboard-arrow-down"
             size={35}
-            onPress={() => setVisible(false)}
-            style={{marginBottom: 30, alignSelf: 'flex-end'}}
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            onPress={React.useCallback(() => {
+              ModalRef.current.fadeOutDownBig();
+              setTimeout(() => {
+                setVisible(false);
+              }, 500);
+            }, [])}
+            style={{alignSelf: 'flex-end'}}
+            color={lightColor}
+          />
+          {/*
+            Icon star
+            Favorite the notice
+          */}
+          <AnimatableIcon
+            ref={IconRef}
+            name={isFavorite ? 'star' : 'star-border'}
+            size={35}
+            useNativeDriver
+            onPress={React.useCallback(() => {
+              setIsFavorite(!isFavorite);
+              IconRef.current.tada();
+            }, [isFavorite])}
+            style={{marginBottom: 30, marginTop: -30, alignSelf: 'flex-start'}}
             color={lightColor}
           />
           <Title>{info.title}</Title>
@@ -81,4 +123,6 @@ export default function Card(props) {
       />
     </Container>
   );
-}
+});
+
+export default Card;

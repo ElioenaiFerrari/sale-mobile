@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React from 'react';
 
 // styles
 import {Container, Refresh} from './styles';
@@ -9,19 +9,19 @@ import api from '../../services/api';
  * Refresh control
  */
 import {RefreshControl} from 'react-native';
-import {getToken} from '../../services/auth';
+import {getToken, onSignedOut} from '../../services/auth';
 
 export default function Main(props) {
   /**
    * The data consult a database and your table items
    */
-  const [data, setData] = useState([]);
+  const [data, setData] = React.useState([]);
   /**
    * Refreshing is state
    * on true => refresh feed
    * on false => refresh complete
    */
-  const [refreshing, setRefreshing] = useState(false);
+  const [refreshing, setRefreshing] = React.useState(false);
   /**
    * swap pick on screen to down => refresh feed
    * Wait the time and refresh feed in 2 seconds
@@ -33,7 +33,7 @@ export default function Main(props) {
   /**
    * Set refresh to true and after two seconds to false
    */
-  const onRefresh = useCallback(() => {
+  const onRefresh = React.useCallback(() => {
     setRefreshing(true);
 
     wait(2000).then(() => setRefreshing(false));
@@ -42,25 +42,27 @@ export default function Main(props) {
   /**
    * Loading the feed data
    */
-  useEffect(() => {
-    async function loadFeed() {
-      /**
-       * Save the JWT token on localStorage to consult after
-       * and authenticate headers with axios in API
-       */
+  React.useEffect(
+    React.useCallback(() => {
+      async function loadFeed() {
+        /**
+         * Save the JWT token on localStorage to consult after
+         * and authenticate headers with axios in API
+         */
 
-      /**
-       * Authentication JWT, and return the data on GET /posts
-       */
-      const {data} = await api.get('/posts', {
-        headers: {Authorization: await getToken()},
-      });
+        /**
+         * Authentication JWT, and return the data on GET /posts
+         */
+        const {data} = await api.get('/posts', {
+          headers: {Authorization: await getToken()},
+        });
 
-      setData(data);
-    }
-    loadFeed();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [refreshing]);
+        setData(data);
+      }
+      loadFeed();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [refreshing]),
+  );
 
   return (
     <Container>

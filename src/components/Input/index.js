@@ -1,19 +1,23 @@
 import React from 'react';
 /**
- * Input are the simple textInput that have functions, icons and dispatch
+ * Input are the simple textInput that have functions, icons and dispatch data
  */
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import {Container, InputText, Touch} from './styles';
 
-export default function Input(props) {
+const Input = React.memo(props => {
   const dispatch = useDispatch();
 
   return (
+    /**
+     * Verify if exists icons
+     * If not, icons returns null
+     */
     <Container>
       {props.iconName && (
-        <Touch onPress={props.iconAction ? props.iconAction : ''}>
+        <Touch onPress={props.iconAction ? props.iconAction : null}>
           <Icon
             style={{
               position: 'absolute',
@@ -30,12 +34,17 @@ export default function Input(props) {
 
       <InputText
         props={props}
-        onChangeText={event => {
-          dispatch(props.action(event));
-        }}
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        onChangeText={React.useCallback(
+          event => {
+            dispatch(props.action(event));
+          },
+          // eslint-disable-next-line react-hooks/exhaustive-deps
+          [],
+        )}
       />
       {props.icon2Name && (
-        <Touch onPress={props.icon2Action ? props.icon2Action : ''}>
+        <Touch onPress={props.icon2Action ? props.icon2Action : null}>
           <Icon
             style={{
               position: 'absolute',
@@ -50,4 +59,6 @@ export default function Input(props) {
       )}
     </Container>
   );
-}
+});
+
+export default Input;

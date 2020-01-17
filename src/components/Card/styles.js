@@ -1,5 +1,6 @@
 import styled from 'styled-components/native';
 import {lightColor, darkColor} from '../../colors';
+import * as Animatable from 'react-native-animatable';
 
 export const Container = styled.View`
   flex: 1;
@@ -18,7 +19,7 @@ export const Modal = styled.Modal.attrs({
   transparent: true,
 })``;
 
-export const ContentContainer = styled.View`
+export const ContentContainer = styled(Animatable.View)`
   flex: 1;
   margin: 150px 1px 0;
   background: ${darkColor};
@@ -52,7 +53,7 @@ export const Title = styled.Text`
 export const Image = styled.Image.attrs({resizeMode: 'cover'})`
   flex: 1;
   opacity: 0.2;
-  border-radius: 2px;
+  border-radius: 10px;
 `;
 
 export const ListContent = styled.View``;
